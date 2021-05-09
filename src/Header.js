@@ -37,7 +37,7 @@ export default function Header({user}) {
                 <a className="nav-link" href="/Kayttaja">Käyttäjät</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Crudilista</a>
+                <a className="nav-link" href="KsaikkiKirjat">Kirjalista</a>
               </li>
               {listaus()}
             </ul>

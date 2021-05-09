@@ -1,6 +1,7 @@
 import { Route,  Switch } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import Kayttaja from './Kayttaja';
+import KaikkiKirjat from './KaikkiKirjat';
 import LoginSuccessful from './LoginSuccessful';
 import AccountSettings from './AccountSettings';
 import UlosKirjautuminen from './UlosKirjautuminen';
@@ -13,6 +14,8 @@ import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
+  
+  console.log("app.js",user);
 
   function setUserStorage(e) {
     const newUser = e;
@@ -36,9 +39,11 @@ function App() {
         <Header user={user}/>
         <Switch>
           <Route exact path="/"> <Content /> </Route>
+          <Route path="/KaikkiKirjat" component={KaikkiKirjat} />
+
           <Route path="/Kayttaja" render={() => <Kayttaja setUser={setUser} setUserStorage={setUserStorage} />} />
-          <Route path="/LoginSuccessful" render={() => <LoginSuccessful user={user} />} />
-          <Route path="/AccountSettings" render={() => <AccountSettings user={user} />} />
+          <Route path="/LoginSuccessful" render={() => <LoginSuccessful user={user} exact/>} />
+          <Route path="/AccountSettings" render={() => <AccountSettings user={user} exact />} />
           <Route path="/UlosKirjautuminen" render={() => <UlosKirjautuminen setUser={setUser} clearUser={clearUserStorage} />} />
         </Switch>
       </main>

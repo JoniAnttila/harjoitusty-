@@ -3,10 +3,6 @@ import {Link} from 'react-router-dom';
 import { Redirect } from 'react-router';
 
 export default function LoginSuccessful({user}) {
-    
-    if (user===null) {
-        return <Redirect to="/LoginPage" />
-    }
 
     function userName() {
         if (user.fname !== undefined)

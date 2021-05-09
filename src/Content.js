@@ -12,7 +12,9 @@ export default function Content() {
                 </Link>
             </div>
             <div className="pt-2 col-12 text-center">
-                Crudilista
+                <Link className="" to="/KaikkiKirjat">
+                    Kirjalista
+                </Link>
             </div>
         </div>
     )
