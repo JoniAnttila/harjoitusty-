@@ -1,4 +1,4 @@
-import { Route,  Switch } from 'react-router-dom';
+import { Route,  Switch, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react'
 import Kayttaja from './Kayttaja';
 import KaikkiKirjat from './KaikkiKirjat';
@@ -9,13 +9,21 @@ import Header from './Header';
 import Content from './Content';
 import Footer from './Footer';
 import './App.css';
+import MuokkaaKirjaa from './MuokkaaKirjaa';
 
 
 
 function App() {
   const [user, setUser] = useState(null);
-  
-  console.log("app.js",user);
+  const [kirja, setKirja] = useState(null);
+  let location = useLocation();
+
+  useEffect(() => {
+    if (location.state !== undefined) {
+      setKirja({ id: location.state.id, nimi: location.state.nimi, hinta: location.state.hinta, kuvaus: location.state.kuvaus });
+    }
+  }, [location.state]);
+
 
   function setUserStorage(e) {
     const newUser = e;
@@ -26,6 +34,7 @@ function App() {
     sessionStorage.clear('kayttaja');
     setUser(null);
   }
+
 
   useEffect(() => {
     if ('kayttaja' in sessionStorage) {
@@ -39,7 +48,12 @@ function App() {
         <Header user={user}/>
         <Switch>
           <Route exact path="/"> <Content /> </Route>
-          <Route path="/KaikkiKirjat" component={KaikkiKirjat} />
+          <Route path="/KaikkiKirjat" render={() => <KaikkiKirjat
+            setKirja={setKirja} />}
+            exact />
+          <Route path="/MuokkaaKirjaa" render={() => <MuokkaaKirjaa
+            kirja={kirja} />}
+            exact />
 
           <Route path="/Kayttaja" render={() => <Kayttaja setUser={setUser} setUserStorage={setUserStorage} />} />
           <Route path="/LoginSuccessful" render={() => <LoginSuccessful user={user} exact/>} />

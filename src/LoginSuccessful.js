@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { Redirect } from 'react-router';
 
 export default function LoginSuccessful({user}) {
 

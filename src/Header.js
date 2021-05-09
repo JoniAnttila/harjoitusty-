@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 export default function Header({user}) {
 
@@ -37,7 +36,7 @@ export default function Header({user}) {
                 <a className="nav-link" href="/Kayttaja">Käyttäjät</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="KsaikkiKirjat">Kirjalista</a>
+                <a className="nav-link" href="KaikkiKirjat">Kirjalista</a>
               </li>
               {listaus()}
             </ul>
